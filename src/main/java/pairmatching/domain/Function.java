@@ -44,6 +44,14 @@ public enum Function {
         return this == PAIR_MATCHING;
     }
 
+    public boolean isPairInquiry() {
+        return this == PAIR_INQUIRY;
+    }
+
+    public boolean isPairInitialization() {
+        return this == PAIR_INITIALIZATION;
+    }
+
     public String getValue() {
         return value;
     }
@@ -51,4 +59,5 @@ public enum Function {
     public String getName() {
         return name;
     }
+
 }

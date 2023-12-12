@@ -16,18 +16,35 @@ public class Controller {
         CrewsMaker.makeCrews();
         while (true) {
             Function function = createFunction();
-            MatchingService matchingService = new MatchingService();
             if (function.isQuit()) {
                 break;
             }
             if (function.isPairMatching()) {
-                Condition condition = createCondition();
-                matchingService.matching(CrewGroup.crews(), condition);
-                OutputView.printPairs(PairGroup.pairs(), condition);
+                pairMatching();
+            }
+            if (function.isPairInquiry()) {
+                pairInquiry();
+            }
+            if (function.isPairInitialization()) {
+                PairGroup.clear();
             }
         }
+    }
 
+    private void pairMatching() {
+        Condition condition = createCondition();
+        MatchingService.matching(CrewGroup.crews(), condition);
+        OutputView.printPairs(PairGroup.pairs(), condition);
+    }
 
+    private void pairInquiry() {
+        try {
+            Condition condition = createCondition();
+            PairGroup.findCondition(condition);
+            OutputView.printPairs(PairGroup.pairs(), condition);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+        }
     }
 
     private Function createFunction() {
