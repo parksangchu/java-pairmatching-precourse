@@ -2,9 +2,12 @@ package pairmatching.controller;
 
 import pairmatching.domain.Condition;
 import pairmatching.domain.Course;
+import pairmatching.domain.CrewGroup;
 import pairmatching.domain.CrewsMaker;
 import pairmatching.domain.Function;
 import pairmatching.domain.Level;
+import pairmatching.domain.MatchingService;
+import pairmatching.domain.PairGroup;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -13,12 +16,14 @@ public class Controller {
         CrewsMaker.makeCrews();
         while (true) {
             Function function = createFunction();
+            MatchingService matchingService = new MatchingService();
             if (function.isQuit()) {
                 break;
             }
             if (function.isPairMatching()) {
                 Condition condition = createCondition();
-
+                matchingService.matching(CrewGroup.crews(), condition);
+                OutputView.printPairs(PairGroup.pairs(), condition);
             }
         }
 

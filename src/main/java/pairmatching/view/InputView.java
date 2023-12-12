@@ -9,7 +9,7 @@ import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 
 public class InputView {
-    private static final String FUNCTIONS_NOTICE = "기능을 선택하세요.";
+    private static final String FUNCTIONS_NOTICE = "\n기능을 선택하세요.";
     private static final String FUNCTIONS_FORMAT = "%s. %s\n";
     private static final String CONDITIONS_FORMAT =
             "\n#############################################\n과정: %s\n미션:"
@@ -32,11 +32,11 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String convertToString(List<String> names) {
+    private static String convertToString(List<String> names) {
         return String.join(DELIMITER, names);
     }
 
-    public static String convertLevelsToString(List<Level> levels) {
+    private static String convertLevelsToString(List<Level> levels) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Level level : levels) {
             String line = String.format(LEVELS_FORMAT, level.getName(), convertToString(level.getMissions()

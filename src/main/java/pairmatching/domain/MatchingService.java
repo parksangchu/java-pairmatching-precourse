@@ -36,7 +36,7 @@ public class MatchingService {
             if (i == shuffledCrewNames.size() - 3) {
                 pair.add(shuffledCrewNames.get(i + 2));
             }
-            PairGroup.addPair(new Pair(pair, condition.getLevel(), condition.getMission()));
+            PairGroup.addPair(new Pair(pair, condition));
         }
     }
 
@@ -45,7 +45,7 @@ public class MatchingService {
             List<String> pair = new ArrayList<>();
             pair.add(shuffledCrewNames.get(i));
             pair.add(shuffledCrewNames.get(i + 1));
-            PairGroup.addPair(new Pair(pair, condition.getLevel(), condition.getMission()));
+            PairGroup.addPair(new Pair(pair, condition));
         }
     }
 }

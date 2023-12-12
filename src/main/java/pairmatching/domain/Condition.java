@@ -4,6 +4,7 @@ import static pairmatching.domain.Error.INVALID_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Condition {
@@ -52,11 +53,20 @@ public class Condition {
         return course;
     }
 
-    public Level getLevel() {
-        return level;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Condition)) {
+            return false;
+        }
+        Condition condition = (Condition) o;
+        return course == condition.course && level == condition.level && mission == condition.mission;
     }
 
-    public Mission getMission() {
-        return mission;
+    @Override
+    public int hashCode() {
+        return Objects.hash(course, level, mission);
     }
 }
