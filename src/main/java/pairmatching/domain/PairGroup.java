@@ -24,7 +24,7 @@ public class PairGroup {
         }
     }
 
-    private static boolean contains(Condition condition) {
+    public static boolean contains(Condition condition) {
         return pairs().stream()
                 .anyMatch(pair -> pair.has(condition));
     }

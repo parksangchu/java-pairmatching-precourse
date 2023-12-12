@@ -33,6 +33,7 @@ public class Controller {
 
     private void pairMatching() {
         Condition condition = createCondition();
+        PairGroup.findCondition(condition);
         MatchingService.matching(CrewGroup.crews(), condition);
         OutputView.printPairs(PairGroup.pairs(), condition);
     }
