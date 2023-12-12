@@ -33,4 +33,12 @@ public enum Function {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_INPUT.getMessage()));
     }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
