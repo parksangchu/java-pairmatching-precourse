@@ -11,6 +11,7 @@ import static pairmatching.domain.Mission.SHOPPING_BASKET;
 import static pairmatching.domain.Mission.SUBWAY_ROUTE_MAP;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +32,8 @@ public enum Level {
     }
 
     public static List<Level> levels() {
-        return Arrays.stream(values())
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(Arrays.stream(values())
+                .collect(Collectors.toList()));
     }
 
     public static Level of(String name) {

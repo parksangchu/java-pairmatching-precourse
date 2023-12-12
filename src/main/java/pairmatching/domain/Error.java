@@ -1,7 +1,8 @@
 package pairmatching.domain;
 
 public enum Error {
-    INVALID_INPUT("잘못된 입력입니다.");
+    INVALID_INPUT("잘못된 입력입니다."),
+    INVALID_FILE("파일을 불러오는 중 오류가 발생했습니다.");
     private static final String ERROR = "[ERROR] ";
     private final String message;
 

@@ -3,6 +3,7 @@ package pairmatching.domain;
 import static pairmatching.domain.Error.INVALID_INPUT;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,8 +22,9 @@ public enum Function {
     }
 
     public static List<Function> functions() {
-        return Arrays.stream(values())
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(
+                Arrays.stream(values())
+                        .collect(Collectors.toList()));
     }
 
     public static Function of(String value) {
@@ -32,6 +34,14 @@ public enum Function {
                                 .equals(value))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_INPUT.getMessage()));
+    }
+
+    public boolean isQuit() {
+        return this == QUIT;
+    }
+
+    public boolean isPairMatching() {
+        return this == PAIR_MATCHING;
     }
 
     public String getValue() {

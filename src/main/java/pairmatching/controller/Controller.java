@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.domain.Condition;
 import pairmatching.domain.Course;
+import pairmatching.domain.CrewsMaker;
 import pairmatching.domain.Function;
 import pairmatching.domain.Level;
 import pairmatching.view.InputView;
@@ -9,8 +10,19 @@ import pairmatching.view.OutputView;
 
 public class Controller {
     public void start() {
-        Function function = createFunction();
-        Condition condition = createCondition();
+        CrewsMaker.makeCrews();
+        while (true) {
+            Function function = createFunction();
+            if (function.isQuit()) {
+                break;
+            }
+            if (function.isPairMatching()) {
+                Condition condition = createCondition();
+
+            }
+        }
+
+
     }
 
     private Function createFunction() {
