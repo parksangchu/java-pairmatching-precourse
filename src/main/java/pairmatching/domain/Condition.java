@@ -47,4 +47,16 @@ public class Condition {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
     }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
 }

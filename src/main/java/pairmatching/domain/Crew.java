@@ -16,5 +16,9 @@ public class Crew {
     public String getName() {
         return name;
     }
+
+    public boolean has(Course course) {
+        return this.course == course;
+    }
 }
 
