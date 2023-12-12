@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import static pairmatching.domain.Error.INVALID_INPUT;
 import static pairmatching.domain.Mission.DISTRIBUTION;
 import static pairmatching.domain.Mission.LOTTO;
 import static pairmatching.domain.Mission.NUMBER_BASEBALL_GAME;
@@ -32,6 +33,19 @@ public enum Level {
     public static List<Level> levels() {
         return Arrays.stream(values())
                 .collect(Collectors.toList());
+    }
+
+    public static Level of(String name) {
+        return Arrays.stream(values())
+                .filter(course
+                        -> course.name
+                        .equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_INPUT.getMessage()));
+    }
+
+    public boolean has(Mission mission) {
+        return missions.contains(mission);
     }
 
     public String getName() {

@@ -24,7 +24,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String readConditions(List<Course> courses, List<Level> levels) {
+    public static String readCondition(List<Course> courses, List<Level> levels) {
         List<String> courseNames = courses.stream()
                 .map(Course::getName)
                 .collect(Collectors.toList());

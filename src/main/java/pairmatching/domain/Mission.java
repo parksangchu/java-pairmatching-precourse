@@ -1,5 +1,9 @@
 package pairmatching.domain;
 
+import static pairmatching.domain.Error.INVALID_INPUT;
+
+import java.util.Arrays;
+
 public enum Mission {
     RACING_GAME("자동차경주"),
     LOTTO("로또"),
@@ -14,6 +18,15 @@ public enum Mission {
 
     Mission(String name) {
         this.name = name;
+    }
+
+    public static Mission of(String name) {
+        return Arrays.stream(values())
+                .filter(course
+                        -> course.name
+                        .equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_INPUT.getMessage()));
     }
 
     public String getName() {
