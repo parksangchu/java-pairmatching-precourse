@@ -19,17 +19,28 @@ public class PairGroup {
     }
 
     public static void findCondition(Condition condition) {
-        if (!contains(condition)) {
+        if (!has(condition)) {
             throw new IllegalArgumentException(INVALID_CONDITION.getMessage());
         }
     }
 
-    public static boolean contains(Condition condition) {
+    public static boolean has(Condition condition) {
         return pairs().stream()
                 .anyMatch(pair -> pair.has(condition));
+    }
+
+    public static boolean contains(List<String> crews, Level level) {
+        return pairs.stream()
+                .filter(pair -> pair.has(level))
+                .anyMatch(pair -> pair.contains(crews));
+    }
+
+    public static void delete(Condition condition) {
+        pairs.removeIf(pair -> pair.has(condition));
     }
 
     public static void clear() {
         pairs.clear();
     }
+
 }

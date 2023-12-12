@@ -5,7 +5,7 @@ import static pairmatching.domain.Error.INVALID_INPUT;
 import java.util.Arrays;
 
 public enum ReMatching {
-    YES("예"),
+    YES("네"),
     NO("아니오");
 
     private final String answer;
@@ -23,7 +23,7 @@ public enum ReMatching {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_INPUT.getMessage()));
     }
 
-    public boolean isYes(String answer) {
-        return this.answer.equals(answer);
+    public boolean isYes() {
+        return this == YES;
     }
 }

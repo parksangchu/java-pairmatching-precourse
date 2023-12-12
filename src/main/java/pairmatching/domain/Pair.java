@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Pair {
     private final List<String> crews;
-    private Condition condition;
+    private final Condition condition;
 
     public Pair(List<String> crews, Condition condition) {
         this.crews = crews;
@@ -16,6 +16,19 @@ public class Pair {
     }
 
     public boolean has(Condition condition) {
-        return this.condition.equals(condition);
+        return this.condition
+                .equals(condition);
+    }
+
+    public boolean has(Level level) {
+        return this.condition
+                .getLevel()
+                .equals(level);
+    }
+
+    public boolean contains(List<String> crews) {
+        return crews.stream()
+                .filter(this.crews::contains)
+                .count() >= 2;
     }
 }

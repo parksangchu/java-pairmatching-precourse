@@ -9,9 +9,6 @@ public class Crew {
         this.name = name;
     }
 
-    public Course getCourse() {
-        return course;
-    }
 
     public String getName() {
         return name;

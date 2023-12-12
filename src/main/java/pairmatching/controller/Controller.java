@@ -8,12 +8,17 @@ import pairmatching.domain.Function;
 import pairmatching.domain.Level;
 import pairmatching.domain.MatchingService;
 import pairmatching.domain.PairGroup;
+import pairmatching.domain.ReMatching;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class Controller {
     public void start() {
         CrewsMaker.makeCrews();
+        repeatProcess();
+    }
+
+    private void repeatProcess() {
         while (true) {
             Function function = createFunction();
             if (function.isQuit()) {
@@ -33,9 +38,30 @@ public class Controller {
 
     private void pairMatching() {
         Condition condition = createCondition();
-        PairGroup.findCondition(condition);
-        MatchingService.matching(CrewGroup.crews(), condition);
+        if (PairGroup.has(condition)) {
+            ReMatching reMatching = createRematching();
+            if (!reMatching.isYes()) {
+                return;
+            }
+            PairGroup.delete(condition);
+        }
+        try {
+            MatchingService.matching(CrewGroup.crews(), condition);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            repeatProcess();
+        }
         OutputView.printPairs(PairGroup.pairs(), condition);
+    }
+
+    private ReMatching createRematching() {
+        while (true) {
+            try {
+                return ReMatching.of(InputView.readRematching());
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e);
+            }
+        }
     }
 
     private void pairInquiry() {
