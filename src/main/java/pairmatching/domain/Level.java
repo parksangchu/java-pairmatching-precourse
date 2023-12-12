@@ -11,6 +11,7 @@ import static pairmatching.domain.Mission.SUBWAY_ROUTE_MAP;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public enum Level {
@@ -27,5 +28,17 @@ public enum Level {
         this.name = name;
         this.missions = missions;
     }
-    
+
+    public static List<Level> levels() {
+        return Arrays.stream(values())
+                .collect(Collectors.toList());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Mission> getMissions() {
+        return missions;
+    }
 }
